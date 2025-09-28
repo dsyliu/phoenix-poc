@@ -1,0 +1,38 @@
+[
+  {
+    "id": "7062b451-8181-426b-aa6f-8affbf9fd66b",
+    "name": "John Doe",
+    "email": "john@company.com",
+    "role": "frontline",
+    "department": "Customer Service",
+    "isActive": true,
+    "createdAt": "2025-09-28T14:58:53.750Z"
+  },
+  {
+    "id": "295710b4-8736-471c-a9c2-01439571fd0d",
+    "name": "Jane Smith",
+    "email": "jane@company.com",
+    "role": "investigator",
+    "department": "Technical Support",
+    "isActive": true,
+    "createdAt": "2025-09-28T14:58:53.751Z"
+  },
+  {
+    "id": "67ff3189-37f5-4fa7-a5e8-7b0c2e871770",
+    "name": "Mike Johnson",
+    "email": "mike@company.com",
+    "role": "validator",
+    "department": "Quality Assurance",
+    "isActive": true,
+    "createdAt": "2025-09-28T14:58:53.751Z"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Admin User",
+    "email": "admin@company.com",
+    "role": "admin",
+    "department": "Administration",
+    "isActive": true,
+    "createdAt": "2025-09-28T15:30:00.000Z"
+  }
+]

@@ -1,0 +1,7 @@
+[
+  { "value": "fraud", "label": "Fraud" },
+  { "value": "billing", "label": "Billing" },
+  { "value": "technical", "label": "Site Issue" },
+  { "value": "service", "label": "Service Quality" },
+  { "value": "other", "label": "Other" }
+]

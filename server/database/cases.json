@@ -1,0 +1,27 @@
+[
+  {
+    "id": "5b1a587a-260b-4842-ab37-745c22a3ff1d",
+    "title": "First Test Case",
+    "description": "Test description for fraud issue",
+    "customerId": "",
+    "customerName": "David Thompson",
+    "customerEmail": "123@test.com",
+    "priority": "tier2",
+    "status": "open",
+    "category": "fraud",
+    "createdBy": "7062b451-8181-426b-aa6f-8affbf9fd66b",
+    "createdAt": "2025-09-28T18:06:08.495Z",
+    "updatedAt": "2025-09-28T18:06:52.259Z",
+    "closedAt": null,
+    "resolution": null,
+    "notes": [
+      {
+        "id": "07f2125f-8b4e-4c85-9cc3-f02d30dc1aa0",
+        "content": "This is the initial notes",
+        "agentId": "7062b451-8181-426b-aa6f-8affbf9fd66b",
+        "agentName": "John Doe",
+        "timestamp": "2025-09-28T18:06:52.258Z"
+      }
+    ]
+  }
+]

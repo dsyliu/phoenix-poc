@@ -1,0 +1,7 @@
+[
+  { "value": "open", "label": "Open" },
+  { "value": "investigating", "label": "Investigating" },
+  { "value": "blocked", "label": "Blocked" },
+  { "value": "resolved", "label": "Resolved" },
+  { "value": "closed", "label": "Closed" }
+]
