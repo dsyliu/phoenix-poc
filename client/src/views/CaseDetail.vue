@@ -20,7 +20,7 @@
             <option value="investigating" v-if="caseData.status === 'open'">
               Start Investigation
             </option>
-            <option value="resolved" v-if="caseData.status === 'investigating'">
+            <option value="resolved" v-if="caseData.status === 'investigating' && authStore.canResolveCases">
               Mark as Resolved
             </option>
             <option value="closed" v-if="caseData.status === 'resolved' && authStore.canCloseCases">

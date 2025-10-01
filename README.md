@@ -4,10 +4,11 @@ A comprehensive case management system for handling customer complaints with rol
 
 ## Features
 
-- **Role-based Access Control**: Three agent types with different permissions
+- **Role-based Access Control**: Four agent types with different permissions
   - **Frontline Agents**: Create new cases
-  - **Investigator Agents**: Investigate and resolve cases
-  - **Validator Agents**: Close resolved cases
+  - **Investigator Agents**: Investigate cases and mark as "resolved" when complete
+  - **Validator Agents**: Review resolved cases and close them
+  - **Admin Users**: Manage system configurations (read-only access to cases)
 
 - **Case Lifecycle Management**: Complete workflow from creation to closure
 - **Real-time Updates**: Add notes and track case progress
@@ -67,14 +68,15 @@ The system comes with four pre-configured demo accounts:
 2. View cases in "Open" status
 3. Click on a case to view details
 4. Change status to "Investigating"
-5. Add notes and updates
-6. Mark as "Resolved" when complete
+5. Add notes and updates during investigation
+6. Mark as "Resolved" when investigation is complete
 
-### Closing Cases (Validator Agents)
+### Validating & Closing Cases (Validator Agents)
 1. Login with a validator account
 2. View cases in "Resolved" status
 3. Review the case and investigation notes
-4. Change status to "Closed" to finalize
+4. Validate the resolution is satisfactory
+5. Change status to "Closed" to finalize the case
 
 ### Administration (Admin Users)
 1. Login with an admin account

@@ -13,8 +13,6 @@
     "assignedTo": "295710b4-8736-471c-a9c2-01439571fd0d",
     "createdAt": "2025-09-28T18:06:08.495Z",
     "updatedAt": "2025-10-01T00:54:31.651Z",
-    "closedAt": null,
-    "resolution": null,
     "notes": [
       {
         "id": "07f2125f-8b4e-4c85-9cc3-f02d30dc1aa0",
@@ -33,14 +31,13 @@
     "customerName": "Vijay Parkh",
     "customerEmail": "vp@test.com",
     "priority": "tier2",
-    "status": "investigating",
+    "status": "closed",
     "category": "billing",
     "createdBy": "7062b451-8181-426b-aa6f-8affbf9fd66b",
     "assignedTo": "295710b4-8736-471c-a9c2-01439571fd0d",
     "createdAt": "2025-10-01T01:00:56.784Z",
-    "updatedAt": "2025-10-01T01:01:19.392Z",
-    "closedAt": null,
-    "resolution": null,
+    "updatedAt": "2025-10-01T02:07:22.777Z",
+    "closedAt": "2025-10-01T02:07:22.777Z",
     "notes": []
   }
 ]

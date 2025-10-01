@@ -1,13 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
-const { initializeServices } = require('./services');
-const authRoutes = require('./routes/auth');
-const caseRoutes = require('./routes/cases');
-const agentRoutes = require('./routes/agents');
-const configRoutes = require('./routes/config');
+import { initializeServices } from './services';
+import authRoutes from './routes/auth';
+import caseRoutes from './routes/cases';
+import agentRoutes from './routes/agents';
+import configRoutes from './routes/config';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,7 +30,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Initialize services and start server
-const startServer = async () => {
+const startServer = async (): Promise<void> => {
   try {
     await initializeServices();
     app.listen(PORT, () => {

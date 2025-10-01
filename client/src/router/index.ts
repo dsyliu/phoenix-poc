@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -7,7 +7,7 @@ import CreateCase from '../views/CreateCase.vue'
 import CaseDetail from '../views/CaseDetail.vue'
 import AdminPanel from '../views/AdminPanel.vue'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
@@ -54,12 +54,12 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const authStore = useAuthStore()
   
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login')
-  } else if (to.meta.requiresRole && authStore.agent.role !== to.meta.requiresRole) {
+  } else if (to.meta.requiresRole && authStore.agent?.role !== to.meta.requiresRole) {
     next('/dashboard')
   } else if (to.path === '/login' && authStore.isAuthenticated) {
     next('/dashboard')

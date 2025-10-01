@@ -1,7 +1,11 @@
-const PersistenceService = require('./PersistenceService');
-const Case = require('../models/Case');
+import { PersistenceService } from './PersistenceService';
+import { Case } from '../models/Case';
+import { Case as ICase, CaseFilters, CreateCaseRequest } from '../types';
 
-class CaseService extends PersistenceService {
+export class CaseService extends PersistenceService {
+  private cases: Map<string, Case>;
+  private readonly filename: string;
+
   constructor() {
     super();
     this.cases = new Map();
@@ -9,10 +13,10 @@ class CaseService extends PersistenceService {
   }
 
   // Load cases from file into memory
-  async loadCases() {
+  public async loadCases(): Promise<void> {
     try {
       await this.ensureFileExists(this.filename, []);
-      const casesData = await this.readJsonFile(this.filename);
+      const casesData = await this.readJsonFile<ICase[]>(this.filename);
       
       if (casesData) {
         this.cases.clear();
@@ -23,35 +27,35 @@ class CaseService extends PersistenceService {
         console.log(`Loaded ${this.cases.size} cases from database`);
       }
     } catch (error) {
-      console.error("Error loading cases:", error);
+      console.error('Error loading cases:', error);
       throw error;
     }
   }
 
   // Save cases from memory to file
-  async saveCases() {
+  public async saveCases(): Promise<void> {
     try {
       const casesArray = Array.from(this.cases.values());
       await this.writeJsonFile(this.filename, casesArray);
       console.log(`Saved ${casesArray.length} cases to database`);
     } catch (error) {
-      console.error("Error saving cases:", error);
+      console.error('Error saving cases:', error);
       throw error;
     }
   }
 
   // Get all cases
-  getAllCases() {
+  public getAllCases(): Case[] {
     return Array.from(this.cases.values());
   }
 
   // Get case by ID
-  getCaseById(id) {
+  public getCaseById(id: string): Case | undefined {
     return this.cases.get(id);
   }
 
   // Create new case
-  async createCase(caseData) {
+  public async createCase(caseData: CreateCaseRequest): Promise<Case> {
     const newCase = new Case(caseData);
     this.cases.set(newCase.id, newCase);
     await this.saveCases();
@@ -59,7 +63,7 @@ class CaseService extends PersistenceService {
   }
 
   // Update case
-  async updateCase(id, updateData) {
+  public async updateCase(id: string, updateData: Partial<ICase>): Promise<Case> {
     const caseItem = this.cases.get(id);
     if (!caseItem) {
       throw new Error('Case not found');
@@ -72,7 +76,7 @@ class CaseService extends PersistenceService {
   }
 
   // Delete case
-  async deleteCase(id) {
+  public async deleteCase(id: string): Promise<boolean> {
     const deleted = this.cases.delete(id);
     if (deleted) {
       await this.saveCases();
@@ -81,7 +85,7 @@ class CaseService extends PersistenceService {
   }
 
   // Filter cases
-  filterCases(filters = {}) {
+  public filterCases(filters: CaseFilters = {}): Case[] {
     let filteredCases = this.getAllCases();
 
     if (filters.status) {
@@ -97,8 +101,6 @@ class CaseService extends PersistenceService {
       filteredCases = filteredCases.filter(c => c.category === filters.category);
     }
 
-    return filteredCases.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return filteredCases.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 }
-
-module.exports = CaseService;
