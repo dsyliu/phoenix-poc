@@ -215,6 +215,15 @@
   color: #2c3e50;
 }
 
+.assigned-agent {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary-700);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
 @media (max-width: 768px) {
   .case-header {
     flex-direction: column;

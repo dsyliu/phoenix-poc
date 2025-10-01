@@ -87,6 +87,11 @@ router.patch('/:id/status', async (req, res) => {
       return res.status(403).json({ error: 'Only validator agents can close cases' });
     }
 
+    // Auto-assign case to investigator when status changes to "investigating"
+    if (status === 'investigating' && agent.canInvestigate()) {
+      caseItem.assignTo(agentId);
+    }
+
     caseItem.updateStatus(status, agentId);
     await caseService.saveCases();
     

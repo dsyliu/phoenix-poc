@@ -50,6 +50,10 @@
               <label>Last Updated:</label>
               <span>{{ formatDate(caseData.updatedAt) }}</span>
             </div>
+            <div class="info-item" v-if="caseData.assignedTo">
+              <label>Assigned To:</label>
+              <span class="assigned-agent">{{ getAssignedAgentName(caseData.assignedTo) }}</span>
+            </div>
           </div>
         </div>
         
@@ -139,6 +143,7 @@ export default {
     const newNote = ref('')
     const addingNote = ref(false)
     const newStatus = ref('')
+    const agents = ref([])
     
     const fetchCase = async () => {
       try {
@@ -149,6 +154,21 @@ export default {
       } finally {
         loading.value = false
       }
+    }
+
+    const fetchAgents = async () => {
+      try {
+        const response = await axios.get('/api/agents')
+        agents.value = response.data
+      } catch (err) {
+        console.error('Failed to fetch agents:', err)
+      }
+    }
+
+    const getAssignedAgentName = (agentId) => {
+      if (!agentId) return 'Unassigned'
+      const agent = agents.value.find(a => a.id === agentId)
+      return agent ? agent.name : 'Unknown Agent'
     }
     
     const addNote = async () => {
@@ -192,8 +212,11 @@ export default {
       return new Date(dateString).toLocaleString()
     }
     
-    onMounted(() => {
-      fetchCase()
+    onMounted(async () => {
+      await Promise.all([
+        fetchCase(),
+        fetchAgents()
+      ])
     })
     
     return {
@@ -204,9 +227,11 @@ export default {
       newNote,
       addingNote,
       newStatus,
+      agents,
       addNote,
       updateStatus,
-      formatDate
+      formatDate,
+      getAssignedAgentName
     }
   }
 }

@@ -248,6 +248,21 @@
   letter-spacing: 0.05em;
 }
 
+.case-assignment {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.case-assignment small {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.case-assignment strong {
+  color: var(--primary-600);
+}
+
 .case-dates {
   display: flex;
   justify-content: space-between;

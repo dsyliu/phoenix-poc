@@ -7,11 +7,12 @@
     "customerName": "David Thompson",
     "customerEmail": "123@test.com",
     "priority": "tier2",
-    "status": "open",
+    "status": "investigating",
     "category": "fraud",
     "createdBy": "7062b451-8181-426b-aa6f-8affbf9fd66b",
+    "assignedTo": "295710b4-8736-471c-a9c2-01439571fd0d",
     "createdAt": "2025-09-28T18:06:08.495Z",
-    "updatedAt": "2025-09-28T18:06:52.259Z",
+    "updatedAt": "2025-10-01T00:54:31.651Z",
     "closedAt": null,
     "resolution": null,
     "notes": [
@@ -23,5 +24,23 @@
         "timestamp": "2025-09-28T18:06:52.258Z"
       }
     ]
+  },
+  {
+    "id": "d41a00aa-0aa8-48c1-8652-7f6c6e160a56",
+    "title": "Test Case 2",
+    "description": "Test description for case 2",
+    "customerId": "1234567",
+    "customerName": "Vijay Parkh",
+    "customerEmail": "vp@test.com",
+    "priority": "tier2",
+    "status": "investigating",
+    "category": "billing",
+    "createdBy": "7062b451-8181-426b-aa6f-8affbf9fd66b",
+    "assignedTo": "295710b4-8736-471c-a9c2-01439571fd0d",
+    "createdAt": "2025-10-01T01:00:56.784Z",
+    "updatedAt": "2025-10-01T01:01:19.392Z",
+    "closedAt": null,
+    "resolution": null,
+    "notes": []
   }
 ]

@@ -69,6 +69,10 @@
           <span class="category">{{ case_.category }}</span>
         </div>
         
+        <div class="case-assignment" v-if="case_.assignedTo">
+          <small><strong>Assigned to:</strong> {{ getAssignedAgentName(case_.assignedTo) }}</small>
+        </div>
+        
         <div class="case-dates">
           <small>Created: {{ formatDate(case_.createdAt) }}</small>
           <small v-if="case_.updatedAt !== case_.createdAt">
@@ -85,6 +89,7 @@ import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useCasesStore } from '../stores/cases'
 import { CASE_STATUSES, CASE_PRIORITIES } from '../constants'
+import axios from 'axios'
 import '../styles/Cases.css'
 
 export default {
@@ -92,6 +97,7 @@ export default {
   setup() {
     const authStore = useAuthStore()
     const casesStore = useCasesStore()
+    const agents = ref([])
     
     const filters = ref({
       status: '',
@@ -112,9 +118,27 @@ export default {
     const formatDate = (dateString) => {
       return new Date(dateString).toLocaleDateString()
     }
+
+    const fetchAgents = async () => {
+      try {
+        const response = await axios.get('/api/agents')
+        agents.value = response.data
+      } catch (err) {
+        console.error('Failed to fetch agents:', err)
+      }
+    }
+
+    const getAssignedAgentName = (agentId) => {
+      if (!agentId) return 'Unassigned'
+      const agent = agents.value.find(a => a.id === agentId)
+      return agent ? agent.name : 'Unknown Agent'
+    }
     
-    onMounted(() => {
-      casesStore.fetchCases()
+    onMounted(async () => {
+      await Promise.all([
+        casesStore.fetchCases(),
+        fetchAgents()
+      ])
     })
     
     return {
@@ -123,6 +147,7 @@ export default {
       filters,
       applyFilters,
       formatDate,
+      getAssignedAgentName,
       CASE_STATUSES,
       CASE_PRIORITIES
     }
