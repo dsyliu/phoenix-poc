@@ -4,13 +4,13 @@
   "description": "Case management system for customer complaints",
   "main": "server/dist/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client:delayed\"",
-    "dev:debug": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:delayed\"",
+    "dev": "npx concurrently \"npm run server\" \"npm run client:delayed\"",
+    "dev:debug": "npx concurrently --kill-others-on-fail \"npm run server\" \"npm run client:delayed\"",
     "server": "nodemon --exec ts-node server/index.ts",
     "server:build": "tsc -p server/tsconfig.json",
     "server:start": "node server/dist/index.js",
     "client": "cd client && npm run dev",
-    "client:delayed": "node scripts/delay.js && cd client && npm run dev",
+    "client:delayed": "npx wait-on http://localhost:3000/api/health && cd client && npm run dev",
     "install-all": "npm install && cd client && npm install",
     "build": "npm run server:build && cd client && npm run build"
   },
